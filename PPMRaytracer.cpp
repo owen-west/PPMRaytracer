@@ -61,17 +61,17 @@ int main() {
     camera cam;
 
     cam.aspect_ratio = 16.0 / 9.0;
-    cam.image_width = 1000;
+    cam.image_width = 1200;
     cam.samples_per_pixel = 50;
     cam.max_depth = 50;
 
     cam.vfov = 20;
-    cam.lookfrom = point3(10, 3, 10);
+    cam.lookfrom = point3(13, 2, 10);
     cam.lookat = point3(0, 0, 0);
     cam.vup = vec3(0, 1, 0);
 
     cam.defocus_angle = 0.6;
-    cam.focus_dist = 15.0;
+    cam.focus_dist = 10.0;
 
     cam.render(world);
 }
