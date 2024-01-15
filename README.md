@@ -18,7 +18,7 @@ Welcome to my sophisticated raytracer project! This project represents my journe
 
 Here are some sample renderings created using this raytracer:
 
-- COMING SOON!!!
+- ![Example](Examples/1200PxWide-50SamplesPerPixel.png)
 
 ## Acknowledgments
 
