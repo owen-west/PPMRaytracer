@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <thread>
 
 using namespace std;
 
@@ -36,28 +37,57 @@ public:
         // Output to file
         outfile << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
-        for (int j = 0; j < image_height; ++j) {
-            std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
+        // create threads
+        std::vector<std::thread> threads;
+        for (int i = 0; i < 10; ++i) {
+            int start_row = i * (image_height / 10);
+            int end_row = (i + 1) * (image_height / 10);
+
+            if (i == 9) {
+                end_row = image_height;
+            }
+
+            threads.emplace_back(&camera::threadRender, this, std::ref(world), start_row, end_row, i + 1);
+        }
+
+
+        // join threads
+        for (auto& thread : threads) {
+            thread.join();
+        }
+
+        // output to file
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < pixels[i].size(); j++) {
+				write_color(outfile, pixels[i][j]);
+			}
+        }
+    }
+
+    void threadRender(const hittable& world, int start, int end, int threadNumber) {
+        for (int j = start; j < end; ++j) {
+            std::clog << '\n' << "Thread: " << threadNumber << " " << "Lines Remaining: " << end - j << '\n';
             for (int i = 0; i < image_width; ++i) {
                 color pixel_color(0, 0, 0);
                 for (int sample = 0; sample < samples_per_pixel; ++sample) {
                     ray r = get_ray(i, j);
                     pixel_color += ray_color(r, max_depth, world);
                 }
-                write_color(outfile, pixel_color, samples_per_pixel);
+
+                pixels[threadNumber - 1].push_back(adjust_color(pixel_color, samples_per_pixel));
             }
         }
-
-        std::clog << "\rDone.                 \n";
     }
 
 private:
+    vector<color> pixels[10];
+
     int    image_height;   // Rendered image height
     point3 center;         // Camera center
     point3 pixel00_loc;    // Location of pixel 0, 0
     vec3   pixel_delta_u;  // Offset to pixel to the right
     vec3   pixel_delta_v;  // Offset to pixel below
-    vec3 u, v, w;          // Camera frame basis vectors (orthonormal basis)
+    vec3   u, v, w;        // Camera frame basis vectors (orthonormal basis)
     vec3   defocus_disk_u; // Defocus disk horizontal radius
     vec3   defocus_disk_v; // Defocus disk vertical radius
 
