@@ -4,21 +4,22 @@ Welcome to my sophisticated raytracer project! This project represents my journe
 
 ## Project Highlights
 
-- 🌐 **Realistic 3D Renderings:** I built this raytracer with a focus on creating stunning 3D renderings that include shading, lighting, and shadows. My primary goal was to achieve lifelike visual effects.
+- ⚙️ **Multithreaded Rendering Performance:** As an independent project, I took the initiative to optimize the raytracer's rendering performance. I achieved efficient rendering times while maintaining high-quality output by implementing multithreading to the core raytracer.
 
-- ✨ **Ray-Sphere Intersection:** The raytracer includes sophisticated ray-sphere intersection algorithms, which are fundamental to achieving realistic rendering. This project allowed me to dive deep into the core principles of computer graphics.
+- 🌐 **Realistic 3D Renderings:** I built this raytracer with a focus on creating stunning 3D renderings that include shading, lighting, and shadows.
 
-- 🔮 **Reflection and Refraction:** I implemented reflection and refraction techniques to further enhance the visual realism of the rendered scenes. These techniques are crucial for creating lifelike materials and effects.
+- ✨ **Ray-Sphere Intersection:** The raytracer includes sophisticated ray-sphere intersection algorithms, which are fundamental to achieving realistic rendering.
+
+- 🔮 **Reflection and Refraction:** I implemented reflection and refraction techniques to further enhance the visual realism of the rendered scenes.
 
 - 🧩 **Modular and Extensible Design:** I followed object-oriented design principles to create a modular and extensible codebase. This design enables easy addition of new features and rendering objects beyond spheres. It ensures that the raytracer can evolve to handle more complex scenes and geometries.
 
-- ⚙️ **Optimized Rendering Performance:** As an independent project, I took the initiative to optimize the raytracer's rendering performance. I achieved efficient rendering times while maintaining high-quality output. This showcases my strong problem-solving skills and self-motivation.
-
-## Examples (Coming Soon)
+## Examples
 
 Here are some sample renderings created using this raytracer:
 
-- ![Example](Examples/1200PxWide-50SamplesPerPixel.png)
+### Width: 1200px, Samples Per Pixel: 50
+![Example](Examples/1200PxWide-50SamplesPerPixel.png)
 
 ## Acknowledgments
 
