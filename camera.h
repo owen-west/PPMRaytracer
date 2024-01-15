@@ -15,6 +15,7 @@ using namespace std;
 
 class camera {
 public:
+
     double aspect_ratio = 1.0;  // Ratio of image width over height
     int    image_width = 100;  // Rendered image width in pixel count
     int    samples_per_pixel = 10;   // Count of random samples for each pixel
@@ -39,11 +40,11 @@ public:
 
         // create threads
         std::vector<std::thread> threads;
-        for (int i = 0; i < 10; ++i) {
-            int start_row = i * (image_height / 10);
-            int end_row = (i + 1) * (image_height / 10);
+        for (int i = 0; i < threadCount; ++i) {
+            int start_row = i * (image_height / threadCount);
+            int end_row = (i + 1) * (image_height / threadCount);
 
-            if (i == 9) {
+            if (i == threadCount - 1) {
                 end_row = image_height;
             }
 
@@ -57,7 +58,7 @@ public:
         }
 
         // output to file
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < threadCount; i++) {
             for (int j = 0; j < pixels[i].size(); j++) {
 				write_color(outfile, pixels[i][j]);
 			}
@@ -80,7 +81,8 @@ public:
     }
 
 private:
-    vector<color> pixels[10];
+    int threadCount = 12;
+    vector<color> pixels[12];
 
     int    image_height;   // Rendered image height
     point3 center;         // Camera center
